@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Mirror of tailwind.config.ts, for raw CSS (SVG fills, gradients). */
+    --color-paper: #ffffff;
+    --color-surface: #f5f8f8;
+    --color-ink: #131a17;
+    --color-muted: #5c6662;
+    --color-forest: #073d30;
+    --color-emerald: #0e7a5f;
+    --color-mint: #5bd3ac;
+    --color-night: #0b0c0e;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-paper font-sans text-ink antialiased;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /*
+   * Two-tone focus ring. The dark outline carries contrast on the white and
+   * #F5F8F8 sections; the mint halo carries it on #0B0C0E / #101914 / #08100C
+   * and the CTA gradient, where the dark outline vanishes. A single-colour ring
+   * fails one side or the other.
+   */
+  :focus-visible {
+    outline: 2px solid var(--color-forest);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(91, 211, 172, 0.55);
+    border-radius: 6px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    /*
+     * Motion writes its `initial` state as an inline style during SSR, so a
+     * reveal target ships as opacity:0 and only becomes visible once the
+     * animation runs. rAF is throttled in background tabs and suppressed in
+     * some headless contexts, so text must never depend on it. This forces the
+     * floor for anyone who has asked for reduced motion.
+     */
+    [data-reveal] {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+}
