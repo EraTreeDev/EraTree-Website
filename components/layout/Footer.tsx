@@ -3,6 +3,8 @@ import { Container } from "@/components/ui/Container";
 import { Wordmark } from "@/components/visuals/Wordmark";
 import { footer } from "@/content/site";
 
+const LINK = "text-[15px] text-white/90 transition-colors hover:text-white";
+
 /** Full-width #0B0C0E band: wordmark + four link columns, then the entity strip. */
 export function Footer() {
   return (
@@ -21,12 +23,20 @@ export function Footer() {
               <ul className="mt-6 flex flex-col gap-4">
                 {column.links.map((link) => (
                   <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-[15px] text-white/90 transition-colors hover:text-white"
-                    >
-                      {link.label}
-                    </Link>
+                    {link.href.startsWith("http") ? (
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={LINK}
+                      >
+                        {link.label}
+                      </a>
+                    ) : (
+                      <Link href={link.href} className={LINK}>
+                        {link.label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>

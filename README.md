@@ -93,7 +93,7 @@ originals had spaces, `&`, apostrophes and an en-dash, which are fragile in URLs
 | Canada / US hero | `graphics/canada-hero.png`, `graphics/us-hero.png` |
 | Home "Deep liquidity" rows | `icons/{compliance,trust-security,seamless-trading}.png` (96px) |
 | Canada / US cards | `icons/card-*.png` (180px) |
-| Currency pills | `icons/flags/{usd,cad,eur,…}.png`, named by currency code |
+| Currency pills | `icons/flags/{usd,cad,eur,…}.svg`, named by currency code |
 | Carousel | `images/carousel-*.png` |
 | Header / footer logo | `images/eratree-logo.png`, `images/eratree-logo-white.png` |
 | /learn thumbnail | `images/blog-image.png` |
@@ -105,17 +105,19 @@ cyan-tinted (`rgb(250,255,255)`), which showed as a hard rectangle — so both r
 The security animation only fills ~39% of its frame width, so it is centre-cropped to a
 square; the landing one fills the frame and stays 16:9.
 
-Three near-duplicate flags were supplied (Hong Kong, Israel, Mexico). One of each is used;
-the unused copies were removed.
+The 19 currency flags mirror the live eratree.io row exactly, in the same order, and were
+taken from it. They are SVGs, so `CurrencyPillRow` passes `unoptimized` to `next/image` —
+the optimizer refuses SVG unless `dangerouslyAllowSVG` is set globally.
 
 ## Before launch
 
-1. **The contact form goes nowhere.** `app/api/contact/route.ts` validates and returns 200
-   but does not deliver. Point it at the real email service or CRM.
+1. **Set the contact form's env vars.** `app/api/contact/route.ts` delivers to
+   `sales@eratree.io` through Resend. Set `RESEND_API_KEY` in the host (see `.env.example`,
+   plus optional `CONTACT_TO_EMAIL` / `CONTACT_FROM_EMAIL`); the sender domain must be
+   verified in Resend. Without a key the route logs and 200s in dev, but 500s in production.
 2. **Set the canonical domain** in `content/site.ts` (`site.url`) — it drives canonical
    URLs, Open Graph and the sitemap.
 3. **Add an `og:image`.** Metadata is wired but there is no share image yet.
-4. `/careers` is linked from the footer but not built.
 
 ## Deviations from the reference
 

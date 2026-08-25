@@ -21,25 +21,30 @@ export const contact = {
 };
 
 /**
- * The flag row under "Trade digital assets…". Flags are ~90×60 PNGs in
- * public/icons/flags, named by currency code.
+ * The flag row under "Trade digital assets…". Mirrors the live eratree.io row
+ * exactly, in the same order. Flags are SVGs in public/icons/flags, named by
+ * currency code.
  */
 export const currencies = [
-  { code: "USD", country: "United States" },
+  { code: "AUD", country: "Australia" },
+  { code: "BRL", country: "Brazil" },
   { code: "CAD", country: "Canada" },
   { code: "EUR", country: "the European Union" },
   { code: "GBP", country: "the United Kingdom" },
-  { code: "CNY", country: "China" },
-  { code: "TWD", country: "Taiwan" },
   { code: "HKD", country: "Hong Kong" },
-  { code: "SGD", country: "Singapore" },
-  { code: "KRW", country: "South Korea" },
-  { code: "INR", country: "India" },
-  { code: "AUD", country: "Australia" },
-  { code: "MXN", country: "Mexico" },
-  { code: "BRL", country: "Brazil" },
-  { code: "SAR", country: "Saudi Arabia" },
   { code: "ILS", country: "Israel" },
+  { code: "INR", country: "India" },
+  { code: "KRW", country: "South Korea" },
+  { code: "MXN", country: "Mexico" },
+  { code: "SAR", country: "Saudi Arabia" },
+  { code: "SGD", country: "Singapore" },
+  { code: "USD", country: "United States" },
+  { code: "CHF", country: "Switzerland" },
+  { code: "DKK", country: "Denmark" },
+  { code: "JPY", country: "Japan" },
+  { code: "NOK", country: "Norway" },
+  { code: "NZD", country: "New Zealand" },
+  { code: "SEK", country: "Sweden" },
 ] as const;
 
 export const globalReach = {

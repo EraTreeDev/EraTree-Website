@@ -45,10 +45,13 @@ export function CurrencyPillRow() {
             >
               <span className="font-mono text-[12px] tracking-[0.06em] text-ink">{c.code}</span>
               <Image
-                src={`/icons/flags/${c.code.toLowerCase()}.png`}
+                src={`/icons/flags/${c.code.toLowerCase()}.svg`}
                 alt={`Flag of ${c.country}`}
                 width={90}
                 height={60}
+                // Next's optimizer refuses SVG unless dangerouslyAllowSVG is set
+                // globally; these are our own assets, so bypass it here instead.
+                unoptimized
                 className="h-[17px] w-[26px] rounded-[3px] object-cover"
               />
             </li>

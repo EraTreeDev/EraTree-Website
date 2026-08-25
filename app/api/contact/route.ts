@@ -1,9 +1,18 @@
 import { NextResponse } from "next/server";
+import { Resend } from "resend";
 
 /**
- * Stub. Validates shape and returns 200 — it does NOT deliver anywhere yet.
- * TODO(launch): forward to the real email service / CRM endpoint.
+ * Delivers the ContactCTABanner submission (landing, /us, /canada, /security,
+ * /contact all post here) to the sales inbox via Resend.
+ *
+ * Env: RESEND_API_KEY, and optionally CONTACT_TO_EMAIL / CONTACT_FROM_EMAIL.
+ * Without a key we log and 200 in development so local work is unblocked, but
+ * 500 in production rather than silently dropping a real lead.
  */
+
+const TO = process.env.CONTACT_TO_EMAIL ?? "sales@eratree.io";
+const FROM = process.env.CONTACT_FROM_EMAIL ?? "EraTree Website <noreply@eratree.io>";
+
 export async function POST(request: Request) {
   let body: Record<string, unknown>;
   try {
@@ -21,7 +30,44 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Consent is required." }, { status: 400 });
   }
 
-  console.info("[contact] trading request received", { email: body.email });
+  const name = String(body.name).trim();
+  const email = String(body.email).trim();
+  const message = String(body.message).trim();
+
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    console.info("[contact] trading request received (no RESEND_API_KEY — not delivered)", {
+      email,
+    });
+    if (process.env.NODE_ENV === "production") {
+      return NextResponse.json({ error: "Email delivery is not configured." }, { status: 500 });
+    }
+    return NextResponse.json({ ok: true });
+  }
+
+  // Plain text only — never interpolate submitted input into HTML.
+  const text = [
+    `Name:    ${name}`,
+    `Email:   ${email}`,
+    "",
+    "Message:",
+    message,
+  ].join("\n");
+
+  try {
+    const { error } = await new Resend(apiKey).emails.send({
+      from: FROM,
+      to: TO,
+      replyTo: email,
+      // Header injection guard: strip anything that could break the subject line.
+      subject: `Trading request — ${name.replace(/[\r\n]+/g, " ").slice(0, 120)}`,
+      text,
+    });
+    if (error) throw new Error(error.message);
+  } catch (err) {
+    console.error("[contact] delivery failed", err);
+    return NextResponse.json({ error: "Could not send your message." }, { status: 500 });
+  }
 
   return NextResponse.json({ ok: true });
 }

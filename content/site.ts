@@ -4,7 +4,7 @@ export const site = {
   url: "https://eratree.io",
   description:
     "Institutional-grade OTC desk for high-value crypto transactions with deep liquidity and private execution.",
-  contactEmail: "info@eratree.io",
+  contactEmail: "sales@eratree.io",
 } as const;
 
 export const nav = [
@@ -44,7 +44,9 @@ export const footer = {
       title: "Company",
       links: [
         { label: "Learn", href: "/learn" },
-        { label: "Careers", href: "/careers" },
+        // No careers page — hiring runs through LinkedIn. Footer renders any
+        // http(s) href as an external link.
+        { label: "Careers", href: "https://www.linkedin.com/company/eratree/" },
         { label: "Contact us", href: "/contact" },
       ],
     },
