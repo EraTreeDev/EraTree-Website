@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraph } from "@/lib/seo";
 import { LegalDocLayout } from "@/components/sections/LegalDocLayout";
 import { vcUnitedStates } from "@/content/legal/vc-united-states";
 
@@ -16,11 +17,11 @@ const description =
 export const metadata: Metadata = {
   title: "Virtual Currency Agreement — United States",
   description,
-  openGraph: {
+  openGraph: openGraph({
     title: "Virtual Currency Agreement — United States",
     description,
     url: "/vc-agreement-united-states",
-  },
+  }),
   robots: { index: false, follow: false },
   alternates: { canonical: "/vc-agreement-united-states" },
 };

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraph } from "@/lib/seo";
 import { Hero } from "@/components/sections/Hero";
 import { ArticleCard } from "@/components/sections/ArticleCard";
 import { Container } from "@/components/ui/Container";
@@ -8,7 +9,7 @@ import { learn } from "@/content/pages";
 export const metadata: Metadata = {
   title: learn.meta.title,
   description: learn.meta.description,
-  openGraph: { title: learn.meta.title, description: learn.meta.description, url: "/learn" },
+  openGraph: openGraph({ title: learn.meta.title, description: learn.meta.description, url: "/learn" }),
   alternates: { canonical: "/learn" },
 };
 

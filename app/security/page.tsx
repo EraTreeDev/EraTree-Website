@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraph } from "@/lib/seo";
 import { Hero } from "@/components/sections/Hero";
 import { FeatureCardGrid } from "@/components/sections/FeatureCardGrid";
 import { StickyScrollSection } from "@/components/sections/StickyScrollSection";
@@ -14,11 +15,11 @@ import { security } from "@/content/pages";
 export const metadata: Metadata = {
   title: security.meta.title,
   description: security.meta.description,
-  openGraph: {
+  openGraph: openGraph({
     title: security.meta.title,
     description: security.meta.description,
     url: "/security",
-  },
+  }),
   alternates: { canonical: "/security" },
 };
 

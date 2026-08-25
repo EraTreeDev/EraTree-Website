@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraph, jsonLd } from "@/lib/seo";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/ui/Container";
@@ -7,6 +8,8 @@ import { Reveal } from "@/components/ui/Reveal";
 import { MediaSlot } from "@/components/visuals/MediaSlot";
 import { ContactCTABanner } from "@/components/sections/ContactCTABanner";
 import { articles, articleBySlug } from "@/content/articles";
+import { publishedAt } from "@/content/article-dates";
+import { site } from "@/content/site";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -23,13 +26,14 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   return {
     title: article.title,
     description,
-    openGraph: {
+    openGraph: openGraph({
       title: article.title,
       description,
       url: `/learn/${slug}`,
       type: "article",
       images: [article.image.src],
-    },
+      publishedTime: publishedAt(slug),
+    }),
     alternates: { canonical: `/learn/${slug}` },
   };
 }
@@ -39,8 +43,37 @@ export default async function ArticlePage({ params }: Params) {
   const article = articleBySlug(slug);
   if (!article) notFound();
 
+  const published = publishedAt(slug);
+  const url = `${site.url}/learn/${slug}`;
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLd({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Article",
+              headline: article.title,
+              description: article.excerpt.slice(0, 200),
+              image: `${site.url}${article.image.src}`,
+              ...(published ? { datePublished: published, dateModified: published } : {}),
+              author: { "@type": "Organization", name: site.legalName, url: site.url },
+              publisher: { "@id": `${site.url}/#organization` },
+              mainEntityOfPage: { "@type": "WebPage", "@id": url },
+            },
+            {
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: "Home", item: site.url },
+                { "@type": "ListItem", position: 2, name: "Learn", item: `${site.url}/learn` },
+                { "@type": "ListItem", position: 3, name: article.title, item: url },
+              ],
+            },
+          ],
+        })}
+      />
       <article>
         <Container className="py-16 lg:py-20">
           <div className="mx-auto max-w-prose">

@@ -26,7 +26,7 @@ export const articles: FullArticle[] = [
     title: "How to Buy Bitcoin",
     readingTime: "2 min read",
     excerpt: "Bitcoin was launched in 2009, and more than fifteen years later it has evolved from a niche experiment into a globally recognized financial asset. Over that time, Bitcoin has steadily gained credibility as its network has proven resilient across multiple market cycles, regulatory scrutiny, and periods of extreme volatility. Today, Bitcoin is increasingly viewed not just as a speculative instrument, but as an asset earning its place within modern portfolio allocation, alongside equities, commodities, and alternative investments.",
-    image: { src: "/images/blog/how-to-buy-bitcoin.jpg", alt: "", width: 478, height: 418 },
+    image: { src: "/images/blog/how-to-buy-bitcoin.jpg", alt: "", width: 1200, height: 1200 },
     logo: false,
     intro: [
       "Bitcoin was launched in 2009, and more than fifteen years later it has evolved from a niche experiment into a globally recognized financial asset. Over that time, Bitcoin has steadily gained credibility as its network has proven resilient across multiple market cycles, regulatory scrutiny, and periods of extreme volatility. Today, Bitcoin is increasingly viewed not just as a speculative instrument, but as an asset earning its place within modern portfolio allocation, alongside equities, commodities, and alternative investments.",
@@ -59,7 +59,7 @@ export const articles: FullArticle[] = [
     title: "Stablecoins: Not All Created Equal..",
     readingTime: "2 min read",
     excerpt: "While stablecoins are often grouped together under a single label, not all stablecoins are built the same. They differ meaningfully in how they maintain their peg, the assets that back them, and the regulatory standards they operate under. Some are fully backed by cash and short-term government securities, while others rely on on-chain collateral or algorithmic mechanisms that introduce additional layers of complexity.",
-    image: { src: "/images/blog/stablecoins-not-all-created-equal.jpg", alt: "", width: 478, height: 418 },
+    image: { src: "/images/blog/stablecoins-not-all-created-equal.jpg", alt: "", width: 1018, height: 679 },
     logo: false,
     intro: [
       "While stablecoins are often grouped together under a single label, not all stablecoins are built the same. They differ meaningfully in how they maintain their peg, the assets that back them, and the regulatory standards they operate under. Some are fully backed by cash and short-term government securities, while others rely on on-chain collateral or algorithmic mechanisms that introduce additional layers of complexity.",
@@ -133,7 +133,7 @@ export const articles: FullArticle[] = [
     title: "Bitcoin: Monetary Salability",
     readingTime: "2 min read",
     excerpt: "When evaluating monetary assets, salability is often assessed across two key dimensions: time and space. Salability across time refers to an asset's ability to preserve value over long periods, maintaining purchasing power rather than eroding through dilution or decay.",
-    image: { src: "/images/blog/bitcoin-monetary-salability.jpg", alt: "", width: 478, height: 418 },
+    image: { src: "/images/blog/bitcoin-monetary-salability.jpg", alt: "", width: 900, height: 680 },
     logo: false,
     intro: [
       "When evaluating monetary assets, salability is often assessed across two key dimensions: time and space. Salability across time refers to an asset's ability to preserve value over long periods, maintaining purchasing power rather than eroding through dilution or decay.",
@@ -168,7 +168,7 @@ export const articles: FullArticle[] = [
     title: "How to Buy Stablecoins",
     readingTime: "2 min read",
     excerpt: "Stablecoins emerged in the mid-2010s as a solution to one of crypto's challenges: volatility. While early digital assets proved the viability of blockchain networks, price instability limited their usefulness for payments, settlement, and treasury management.",
-    image: { src: "/images/blog/how-to-buy-stablecoins.png", alt: "", width: 478, height: 418 },
+    image: { src: "/images/blog/how-to-buy-stablecoins.jpg", alt: "", width: 1200, height: 1200 },
     logo: false,
     intro: [
       "Stablecoins emerged in the mid-2010s as a solution to one of crypto's challenges: volatility. While early digital assets proved the viability of blockchain networks, price instability limited their usefulness for payments, settlement, and treasury management.",
@@ -204,7 +204,7 @@ export const articles: FullArticle[] = [
     title: "Stablecoins: Institutional Integration",
     readingTime: "3 min read",
     excerpt: "Stablecoins are rapidly becoming a core component of institutional financial infrastructure, largely because they operate on a 24/7, 365 basis. Unlike traditional financial rails that are constrained by banking hours, settlement windows, and geographic limitations, stablecoins allow capital to move continuously with near-instant finality. As a result, stablecoins are increasingly viewed not just as payment tools, but as programmable cash designed for modern markets.",
-    image: { src: "/images/blog/stablecoins-institutional-integration.jpeg", alt: "", width: 478, height: 418 },
+    image: { src: "/images/blog/stablecoins-institutional-integration.jpeg", alt: "", width: 2154, height: 724 },
     logo: false,
     intro: [
       "Stablecoins are rapidly becoming a core component of institutional financial infrastructure, largely because they operate on a 24/7, 365 basis. Unlike traditional financial rails that are constrained by banking hours, settlement windows, and geographic limitations, stablecoins allow capital to move continuously with near-instant finality. As a result, stablecoins are increasingly viewed not just as payment tools, but as programmable cash designed for modern markets.",
@@ -240,7 +240,7 @@ export const articles: FullArticle[] = [
     title: "Crypto Industry: Payment",
     readingTime: "2 min read",
     excerpt: "Payment processors are increasingly embracing crypto as digital assets move from speculation to real-world utility. Companies are now processing a growing volume of crypto-based payments, reflecting broader acceptance of blockchain rails for settlement and value transfer. As stablecoins and on-chain payments mature, traditional payment providers are integrating crypto to offer faster, more global, and more efficient payment infrastructure for businesses and consumers alike.",
-    image: { src: "/images/blog/crypto-industry-payment.jpeg", alt: "", width: 478, height: 418 },
+    image: { src: "/images/blog/crypto-industry-payment.jpeg", alt: "", width: 1938, height: 1292 },
     logo: false,
     intro: [
       "Payment processors are increasingly embracing crypto as digital assets move from speculation to real-world utility. Companies are now processing a growing volume of crypto-based payments, reflecting broader acceptance of blockchain rails for settlement and value transfer. As stablecoins and on-chain payments mature, traditional payment providers are integrating crypto to offer faster, more global, and more efficient payment infrastructure for businesses and consumers alike.",
@@ -276,7 +276,7 @@ export const articles: FullArticle[] = [
     title: "Bitcoin: Absolutely Scarce",
     readingTime: "2 min read",
     excerpt: "Throughout history, investors have sought assets that are scarce, durable, and resistant to dilution. Gold and silver have long filled this role, largely because their supply grows slowly and extracting new material requires significant time, capital, and effort.",
-    image: { src: "/images/blog/bitcoin-absolutely-scarce.jpeg", alt: "", width: 478, height: 418 },
+    image: { src: "/images/blog/bitcoin-absolutely-scarce.jpeg", alt: "", width: 1232, height: 928 },
     logo: false,
     intro: [
       "Throughout history, investors have sought assets that are scarce, durable, and resistant to dilution. Gold and silver have long filled this role, largely because their supply grows slowly and extracting new material requires significant time, capital, and effort.",
@@ -319,7 +319,7 @@ export const articles: FullArticle[] = [
     title: "Stablecoins: The Basics",
     readingTime: "2 min read",
     excerpt: "Stablecoins are a class of digital assets designed to maintain a stable value, most commonly by being pegged to a fiat currency like the US dollar. Unlike traditional cryptocurrencies that experience significant price volatility, stablecoins aim to combine the price stability of cash with the speed, transparency, and programmability of blockchain technology:",
-    image: { src: "/images/blog/stablecoins-the-basics.jpeg", alt: "", width: 478, height: 418 },
+    image: { src: "/images/blog/stablecoins-the-basics.jpeg", alt: "", width: 1232, height: 928 },
     logo: false,
     intro: [
       "Stablecoins are a class of digital assets designed to maintain a stable value, most commonly by being pegged to a fiat currency like the US dollar. Unlike traditional cryptocurrencies that experience significant price volatility, stablecoins aim to combine the price stability of cash with the speed, transparency, and programmability of blockchain technology:",
@@ -338,7 +338,7 @@ export const articles: FullArticle[] = [
     title: "Crypto Industry: DATs",
     readingTime: "2 min read",
     excerpt: "Digital Asset Treasuries (DATs) are emerging as an important and often misunderstood investment vehicle within the broader crypto ecosystem. These structures offer investors pseudo exposure to digital assets through operating companies that hold crypto on their balance sheets, helping introduce the concept of crypto ownership to traditional markets in a familiar equity format. Because they trade as public securities, digital asset treasuries can also be held in tax-registered accounts, expanding accessibility for a wider investor base. At the same time, they are fundamentally different from crypto ETF products in structure, risk profile, and purpose, making it important to understand where they fit and where they do not.",
-    image: { src: "/images/blog/crypto-industry-dats.jpeg", alt: "", width: 478, height: 418 },
+    image: { src: "/images/blog/crypto-industry-dats.jpeg", alt: "", width: 1938, height: 1292 },
     logo: false,
     intro: [
       "Digital Asset Treasuries (DATs) are emerging as an important and often misunderstood investment vehicle within the broader crypto ecosystem. These structures offer investors pseudo exposure to digital assets through operating companies that hold crypto on their balance sheets, helping introduce the concept of crypto ownership to traditional markets in a familiar equity format. Because they trade as public securities, digital asset treasuries can also be held in tax-registered accounts, expanding accessibility for a wider investor base. At the same time, they are fundamentally different from crypto ETF products in structure, risk profile, and purpose, making it important to understand where they fit and where they do not.",
@@ -385,7 +385,7 @@ export const articles: FullArticle[] = [
     title: "Bitcoin: Institutional Grade Asset",
     readingTime: "2 min read",
     excerpt: "Institutional adoption of Bitcoin has accelerated rapidly as regulated access points have matured and familiarity has increased. The launch and growth of spot Bitcoin ETFs, particularly iShares Bitcoin Trust (IBIT), have transformed Bitcoin from a niche allocation into an asset that fits cleanly within traditional investment frameworks.",
-    image: { src: "/images/blog/bitcoin-institutional-grade-asset.jpeg", alt: "", width: 478, height: 418 },
+    image: { src: "/images/blog/bitcoin-institutional-grade-asset.jpeg", alt: "", width: 1232, height: 928 },
     logo: false,
     intro: [
       "Institutional adoption of Bitcoin has accelerated rapidly as regulated access points have matured and familiarity has increased. The launch and growth of spot Bitcoin ETFs, particularly iShares Bitcoin Trust (IBIT), have transformed Bitcoin from a niche allocation into an asset that fits cleanly within traditional investment frameworks.",
@@ -419,7 +419,7 @@ export const articles: FullArticle[] = [
     title: "How to Buy Ethereum",
     readingTime: "2 min read",
     excerpt: "Ethereum was launched in 2015, and in the decade since, it has grown into one of the most important platforms in digital finance. While Bitcoin established the foundation for decentralized value transfer, Ethereum expanded the scope of what blockchains could support by enabling programmable applications and smart contracts.",
-    image: { src: "/images/blog/how-to-buy-ethereum.png", alt: "", width: 478, height: 418 },
+    image: { src: "/images/blog/how-to-buy-ethereum.jpg", alt: "", width: 1200, height: 1200 },
     logo: false,
     intro: [
       "Ethereum was launched in 2015, and in the decade since, it has grown into one of the most important platforms in digital finance. While Bitcoin established the foundation for decentralized value transfer, Ethereum expanded the scope of what blockchains could support by enabling programmable applications and smart contracts.",

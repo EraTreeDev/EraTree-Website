@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraph } from "@/lib/seo";
 import { Hero } from "@/components/sections/Hero";
 import { ContactCTABanner } from "@/components/sections/ContactCTABanner";
 import { contact } from "@/content/pages";
@@ -6,7 +7,7 @@ import { contact } from "@/content/pages";
 export const metadata: Metadata = {
   title: contact.meta.title,
   description: contact.meta.description,
-  openGraph: { title: contact.meta.title, description: contact.meta.description, url: "/contact" },
+  openGraph: openGraph({ title: contact.meta.title, description: contact.meta.description, url: "/contact" }),
   alternates: { canonical: "/contact" },
 };
 

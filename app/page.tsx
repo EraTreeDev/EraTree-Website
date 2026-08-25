@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraph, jsonLd, organizationSchema } from "@/lib/seo";
 import { Hero } from "@/components/sections/Hero";
 import { StatStrip } from "@/components/sections/StatStrip";
 import { CurrencyPillRow } from "@/components/sections/CurrencyPillRow";
@@ -14,13 +15,17 @@ import { home } from "@/content/pages";
 export const metadata: Metadata = {
   title: home.meta.title,
   description: home.meta.description,
-  openGraph: { title: home.meta.title, description: home.meta.description, url: "/" },
+  openGraph: openGraph({ title: home.meta.title, description: home.meta.description, url: "/" }),
   alternates: { canonical: "/" },
 };
 
 export default function HomePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLd(organizationSchema)}
+      />
       <Hero
         heading={home.hero.heading.map((line) => (
           <span key={line} className="block">
