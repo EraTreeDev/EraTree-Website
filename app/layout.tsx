@@ -31,7 +31,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body>
+      {/*
+        Extensions (Grammarly and friends) stamp attributes like
+        data-gr-ext-installed onto <body> before React hydrates, which trips a
+        hydration mismatch in the console. Suppressing here covers only this
+        element's attributes — mismatches inside the tree still warn.
+      */}
+      <body suppressHydrationWarning>
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-forest focus:px-5 focus:py-3 focus:text-white"

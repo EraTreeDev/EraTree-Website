@@ -57,6 +57,12 @@ export function ContactCTABanner() {
         body: JSON.stringify(Object.fromEntries(data)),
       });
       if (!res.ok) throw new Error("Request failed");
+      // The visitor always sees success on a 2xx; this only surfaces a
+      // misconfigured server (no API key) to whoever is looking at the console.
+      const json = await res.json().catch(() => null);
+      if (json && json.delivered === false) {
+        console.warn(`[contact] accepted but not delivered: ${json.reason}`);
+      }
       setStatus("sent");
       form.reset();
     } catch {

@@ -94,8 +94,9 @@ originals had spaces, `&`, apostrophes and an en-dash, which are fragile in URLs
 | Home "Deep liquidity" rows | `icons/{compliance,trust-security,seamless-trading}.png` (96px) |
 | Canada / US cards | `icons/card-*.png` (180px) |
 | Currency pills | `icons/flags/{usd,cad,eur,…}.svg`, named by currency code |
+| Article heroes | `images/blog/{slug}.png`, one per article |
 | Carousel | `images/carousel-*.png` |
-| Header / footer logo | `images/eratree-logo.png`, `images/eratree-logo-white.png` |
+| Header / footer logo | `images/eratree-logo-dark.svg`, `images/eratree-logo-white.svg` |
 | /learn thumbnail | `images/blog-image.png` |
 
 Both hero videos are 1280×720. Neither sits on pure page white — the landing one is
@@ -113,11 +114,27 @@ the optimizer refuses SVG unless `dangerouslyAllowSVG` is set globally.
 
 1. **Set the contact form's env vars.** `app/api/contact/route.ts` delivers to
    `sales@eratree.io` through Resend. Set `RESEND_API_KEY` in the host (see `.env.example`,
-   plus optional `CONTACT_TO_EMAIL` / `CONTACT_FROM_EMAIL`); the sender domain must be
-   verified in Resend. Without a key the route logs and 200s in dev, but 500s in production.
+   plus optional `CONTACT_TO_EMAIL` / `CONTACT_FROM_EMAIL`). Without a key the route warns
+   and returns `delivered: false` in dev, and 500s in production.
+
+   **The sender domain must be verified in Resend first.** `eratree.io` publishes
+   `v=spf1 include:spf.protection.outlook.com -all` (Microsoft 365, hard fail), so mail
+   sent from `@eratree.io` via Resend will be rejected until Resend's DKIM/SPF records are
+   added to DNS. Until then use Resend's `onboarding@resend.dev` as `CONTACT_FROM_EMAIL`.
 2. **Set the canonical domain** in `content/site.ts` (`site.url`) — it drives canonical
    URLs, Open Graph and the sitemap.
 3. **Add an `og:image`.** Metadata is wired but there is no share image yet.
+
+## Learn articles
+
+`content/articles.ts` is generated — do not hand-edit it. It is scraped from
+`eratree.io/blog` by `scripts/scrape-blog.mjs`, which also pulls each hero image into
+`public/images/blog/`. Re-run with `node scripts/scrape-blog.mjs` to refresh.
+
+The scrape is scoped to each page's `<article>` element; widening it sweeps the live site's
+nav and footer into the body copy. `crypto-industry-otc` has no hero image upstream and
+falls back to `images/blog-image.png`; `stablecoins-the-basics` has no `<h2>` upstream and
+renders as one flowing section.
 
 ## Deviations from the reference
 

@@ -74,6 +74,20 @@ const config: Config = {
       transitionTimingFunction: {
         out: "cubic-bezier(0.22, 0.61, 0.36, 1)",
       },
+      keyframes: {
+        /**
+         * The currency row renders its pills twice; shifting the track by half
+         * its width lands copy 2 exactly where copy 1 started, so the reset is
+         * invisible and the scroll reads as endless.
+         */
+        marquee: {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-50%)" },
+        },
+      },
+      animation: {
+        marquee: "marquee 40s linear infinite",
+      },
     },
   },
   plugins: [],

@@ -6,6 +6,7 @@
  */
 
 import type { Feature } from "@/components/sections/FeatureCardGrid";
+import { articles } from "@/content/articles";
 
 export const contact = {
   meta: {
@@ -359,15 +360,6 @@ export const learn = {
     heading: ["Insights for the evolving", "digital asset market."],
     sub: "Research, education, and market perspectives on Bitcoin, stablecoins, institutional adoption, payments, and digital asset infrastructure.",
   },
-  // TODO: replace with real articles. The reference repeats one sample card four times.
-  articles: [
-    {
-      slug: "how-to-buy-bitcoin",
-      readingTime: "2 min read",
-      title: "How to buy Bitcoin",
-      excerpt:
-        "Bitcoin was launched in 2009, and more than seventeen years later it has evolved from a niche experiment into a globally recognized financial asset. Over that time, Bitcoin has steadily gained credibility as its network has proven resilient across multiple market cycles, regulatory scrutiny, and periods of extreme volatility.",
-      image: { src: "/images/blog-image.png", alt: "", width: 478, height: 418 },
-    },
-  ],
+  /** Scraped from eratree.io/blog — see scripts/scrape-blog.mjs. */
+  articles,
 };

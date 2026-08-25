@@ -36,13 +36,16 @@ export async function POST(request: Request) {
 
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
-    console.info("[contact] trading request received (no RESEND_API_KEY — not delivered)", {
-      email,
-    });
+    console.warn(
+      "[contact] RESEND_API_KEY is not set — the submission was NOT delivered anywhere.",
+      { email },
+    );
     if (process.env.NODE_ENV === "production") {
       return NextResponse.json({ error: "Email delivery is not configured." }, { status: 500 });
     }
-    return NextResponse.json({ ok: true });
+    // `delivered` keeps this distinguishable from a real send; a bare { ok: true }
+    // looks identical to success and is what made this look broken before.
+    return NextResponse.json({ ok: true, delivered: false, reason: "no-api-key" });
   }
 
   // Plain text only — never interpolate submitted input into HTML.
@@ -54,8 +57,9 @@ export async function POST(request: Request) {
     message,
   ].join("\n");
 
+  let id: string | undefined;
   try {
-    const { error } = await new Resend(apiKey).emails.send({
+    const { data, error } = await new Resend(apiKey).emails.send({
       from: FROM,
       to: TO,
       replyTo: email,
@@ -64,10 +68,11 @@ export async function POST(request: Request) {
       text,
     });
     if (error) throw new Error(error.message);
+    id = data?.id;
   } catch (err) {
     console.error("[contact] delivery failed", err);
     return NextResponse.json({ error: "Could not send your message." }, { status: 500 });
   }
 
-  return NextResponse.json({ ok: true });
+  return NextResponse.json({ ok: true, delivered: true, id });
 }

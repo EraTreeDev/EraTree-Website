@@ -12,7 +12,7 @@ export function Footer() {
       <Container className="py-16 lg:py-20">
         <div className="flex flex-col gap-12 lg:flex-row lg:justify-between lg:gap-16">
           <div>
-            <Wordmark onDark height={44} className="lg:!h-[54px]" />
+            <Wordmark onDark height={22} className="lg:!h-[27px]" />
           </div>
 
           {/* Reference pitches the four columns ~180px apart, right-aligned. */}
