@@ -6,10 +6,22 @@ const WWW = [{ type: "host", value: "www.eratree.io" }];
  * after the rebuild, so each one is mapped to its replacement.
  */
 const RENAMED = [
+  // Published by the previous site.
   ["/privacy", "/privacy-policy"],
   ["/terms", "/terms-of-use"],
   ["/disclosure", "/risk-disclosure"],
   ["/blog", "/learn"],
+
+  // Printed on the client onboarding forms. Unhyphenated, and never served by
+  // either site — clients were being asked to accept documents at dead links.
+  ["/termsofuse", "/terms-of-use"],
+  ["/privacypolicy", "/privacy-policy"],
+  ["/riskdisclosure", "/risk-disclosure"],
+
+  // Near misses worth catching so a stale document never 404s again.
+  ["/terms-and-conditions", "/terms-of-use"],
+  ["/privacy-notice", "/privacy-policy"],
+  ["/risk-disclosure-statement", "/risk-disclosure"],
 ];
 
 const nextConfig = {
