@@ -47,9 +47,14 @@ function inline(html) {
         return `[${t}](${href})`;
       })
       .replace(/<br\s*\/?>/gi, " ")
-      .replace(/<[^>]+>/g, ""),
+      // Space, not empty: clause markers sit in their own <span>, so stripping
+      // to "" glued them to the following word — "(b)Customer" instead of
+      // "(b) Customer". The tidy-up below removes the spaces that introduces.
+      .replace(/<[^>]+>/g, " "),
   )
     .replace(/\s+/g, " ")
+    .replace(/\s+([,.;:!?)\]])/g, "$1")
+    .replace(/([(\[])\s+/g, "$1")
     .trim();
 }
 
@@ -115,10 +120,16 @@ function parse(file, { flatHeadings = false } = {}) {
   return { title, updated, sections };
 }
 
+/**
+ * `out` is the filename stem; the key is the exported const. They differ only
+ * where a kebab-case filename would not be a valid JS identifier.
+ */
 const docs = {
   privacy: { file: "legal_privacy.html", opts: {} },
   terms: { file: "legal_terms.html", opts: {} },
   disclosure: { file: "legal_disclosure.html", opts: { flatHeadings: true } },
+  vcUnitedStates: { file: "legal_vc_us.html", opts: {}, out: "vc-united-states" },
+  vcCanada: { file: "legal_vc_ca.html", opts: {}, out: "vc-canada" },
 };
 
 fs.mkdirSync(OUT, { recursive: true });
@@ -132,14 +143,14 @@ import type { LegalDoc } from "./types";
 
 `;
 
-for (const [slug, { file, opts }] of Object.entries(docs)) {
+for (const [slug, { file, opts, out }] of Object.entries(docs)) {
   const doc = parse(file, opts);
   const words = doc.sections
     .flatMap((s) => s.blocks)
     .join(" ")
     .split(/\s+/).length;
   const body = `${banner}export const ${slug}: LegalDoc = ${JSON.stringify(doc, null, 2)};\n`;
-  fs.writeFileSync(path.join(OUT, `${slug}.ts`), body, "utf8");
+  fs.writeFileSync(path.join(OUT, `${out ?? slug}.ts`), body, "utf8");
   console.log(
     `${slug}: "${doc.title}" | updated="${doc.updated}" | ${doc.sections.length} sections | ~${words} words`,
   );
