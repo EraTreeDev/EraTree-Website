@@ -73,6 +73,8 @@ export function MediaSlot({
       height={height}
       priority={priority}
       sizes="(max-width: 1024px) 100vw, 50vw"
+      // Next's optimizer refuses SVG unless dangerouslyAllowSVG is set globally.
+      unoptimized={src.endsWith(".svg")}
       className={`h-auto w-full ${className}`}
     />
   );

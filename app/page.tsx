@@ -36,7 +36,9 @@ export default function HomePage() {
             // The globe fills only ~33% of the 16:9 source and sits right of
             // centre, so crop to a square around it rather than showing the
             // empty frame.
-            className="aspect-square w-full"
+            // Capped so the square crop doesn't push the landing hero taller
+            // than the region heroes.
+            className="mx-auto aspect-square w-full max-w-[450px]"
             // The globe sits at ~72% across the source; right-aligning the
             // cover crop is what actually centres it in a square box.
             objectPosition="100% 50%"
@@ -45,6 +47,7 @@ export default function HomePage() {
           />
         }
         layout="balanced"
+        padding="tight"
       />
 
       <StatStrip stats={home.stats} />

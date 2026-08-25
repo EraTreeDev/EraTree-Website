@@ -36,7 +36,7 @@ function Pill({ code, country }: { code: string; country: string }) {
  */
 export function CurrencyPillRow() {
   return (
-    <section className="py-20 lg:py-24">
+    <section className="pb-28 pt-20 lg:pb-36 lg:pt-24">
       <Container>
         <Reveal className="text-center">
           <Eyebrow>{globalReach.eyebrow}</Eyebrow>

@@ -32,6 +32,46 @@ const SLUGS = [
 
 const IMAGE_DIR = join("public", "images", "blog");
 
+/**
+ * Card title and thumbnail per slug, taken from the /blog index rather than the
+ * article page. The two disagree: the index calls post 2 "Stablecoins: Not All
+ * Created Equal.." while its own <h1> reads "Diversity of Stablecoin Design".
+ * The index wording is the canonical one.
+ *
+ * `image: null` means "use the EraTree dark wordmark" — that is what the live
+ * index shows for the OTC post. Note blog-6 is deliberately reused by two posts
+ * upstream; that is the live site's own duplication, not a scraping slip.
+ */
+const CARDS = {
+  "how-to-buy-bitcoin": { title: "How to Buy Bitcoin", img: "/blogs/blog-1.jpg" },
+  "stablecoins-not-all-created-equal": {
+    title: "Stablecoins: Not All Created Equal..",
+    img: "/blogs/blog-2.jpg",
+  },
+  "crypto-industry-otc": { title: "Crypto Industry: OTC", img: null },
+  "bitcoin-monetary-salability": {
+    title: "Bitcoin: Monetary Salability",
+    img: "/blogs/blog-3.jpg",
+  },
+  "how-to-buy-stablecoins": { title: "How to Buy Stablecoins", img: "/blogs/blog-4.png" },
+  "stablecoins-institutional-integration": {
+    title: "Stablecoins: Institutional Integration",
+    img: "/blogs/blog-5.jpeg",
+  },
+  "crypto-industry-payment": { title: "Crypto Industry: Payment", img: "/blogs/blog-6.jpeg" },
+  "bitcoin-absolutely-scarce": { title: "Bitcoin: Absolutely Scarce", img: "/blogs/blog-7.jpeg" },
+  "stablecoins-the-basics": { title: "Stablecoins: The Basics", img: "/blogs/blog-8.jpeg" },
+  "crypto-industry-dats": { title: "Crypto Industry: DATs", img: "/blogs/blog-6.jpeg" },
+  "bitcoin-institutional-grade-asset": {
+    title: "Bitcoin: Institutional Grade Asset",
+    img: "/blogs/blog-9.jpeg",
+  },
+  "how-to-buy-ethereum": { title: "How to Buy Ethereum", img: "/blogs/blog-10.png" },
+};
+
+/** Stand-in thumbnail for the post the index gives no photo. */
+const LOGO_IMAGE = "/images/eratree-logo-dark.svg";
+
 /** Collapse entities and tags down to readable text. */
 function clean(html) {
   return html
@@ -93,23 +133,21 @@ async function scrape(slug) {
   const html = await res.text();
 
   const body = articleBody(html);
-  const title = matchAll(body, /<h1\b[^>]*>([\s\S]*?)<\/h1>/gi)[0] ?? slug;
+  const card = CARDS[slug];
+  const title = card?.title ?? matchAll(body, /<h1\b[^>]*>([\s\S]*?)<\/h1>/gi)[0] ?? slug;
   const readingTime = (body.match(/(\d+\s*min read)/i)?.[1] ?? "3 min read").toLowerCase();
   const { intro, sections } = parseSections(body);
 
-  // Hero lives behind Next's image optimizer: /_next/image?url=%2Fblogs%2F...
-  const encoded = html.match(/\/_next\/image\?url=([^"&]*blogs[^"&]*)/i)?.[1];
-  const imagePath = encoded ? decodeURIComponent(encoded) : null;
-
-  let image = null;
-  if (imagePath) {
-    const ext = imagePath.split(".").pop().split(/[^a-z0-9]/i)[0] || "png";
+  let image = LOGO_IMAGE;
+  let logo = true;
+  if (card?.img) {
+    const ext = card.img.split(".").pop();
     const file = `${slug}.${ext}`;
-    const bin = await fetch(`${ORIGIN}${imagePath}`);
-    if (bin.ok) {
-      await writeFile(join(IMAGE_DIR, file), Buffer.from(await bin.arrayBuffer()));
-      image = `/images/blog/${file}`;
-    }
+    const bin = await fetch(`${ORIGIN}${card.img}`);
+    if (!bin.ok) throw new Error(`${slug}: image ${card.img} → HTTP ${bin.status}`);
+    await writeFile(join(IMAGE_DIR, file), Buffer.from(await bin.arrayBuffer()));
+    image = `/images/blog/${file}`;
+    logo = false;
   }
 
   return {
@@ -120,6 +158,7 @@ async function scrape(slug) {
     intro,
     sections,
     image,
+    logo,
   };
 }
 
@@ -133,7 +172,8 @@ function serialise(articles) {
     title: ${q(a.title)},
     readingTime: ${q(a.readingTime)},
     excerpt: ${q(a.excerpt)},
-    image: { src: ${q(a.image ?? "/images/blog-image.png")}, alt: "", width: 478, height: 418 },
+    image: { src: ${q(a.image)}, alt: "", width: 478, height: 418 },
+    logo: ${a.logo},
     intro: [
 ${a.intro.map((p) => `      ${q(p)},`).join("\n")}
     ],
@@ -169,6 +209,8 @@ export type FullArticle = {
   readingTime: string;
   excerpt: string;
   image: { src: string; alt: string; width: number; height: number };
+  /** True when the image is the wordmark stand-in, which needs padding not cropping. */
+  logo: boolean;
   intro: string[];
   sections: ArticleSection[];
 };
@@ -191,7 +233,7 @@ for (const slug of SLUGS) {
   results.push(a);
   console.log(
     `${a.slug.padEnd(38)} ${String(a.sections.length).padStart(2)} sections  ` +
-      `${a.image ? "image ok" : "NO IMAGE"}  ${a.title}`,
+      `${(a.logo ? "wordmark" : a.image.split("/").pop()).padEnd(34)} ${a.title}`,
   );
 }
 

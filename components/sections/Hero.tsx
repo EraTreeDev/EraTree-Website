@@ -22,6 +22,11 @@ export function Hero({
    * the visual more room, for the 16:9 hero animations.
    */
   layout = "text-wide",
+  /**
+   * "tight" trims the vertical padding for the landing hero, whose square video
+   * already makes the section taller than the region heroes.
+   */
+  padding = "default",
 }: {
   eyebrow?: string;
   heading: ReactNode;
@@ -34,11 +39,18 @@ export function Hero({
   /** "split" = text left / visual right. "center" = centred, no visual. */
   align?: "split" | "center";
   layout?: "text-wide" | "balanced";
+  padding?: "default" | "tight";
 }) {
   const centered = align === "center";
 
   return (
-    <section className="pb-16 pt-16 lg:pb-24 lg:pt-[104px]">
+    <section
+      className={
+        padding === "tight"
+          ? "pb-10 pt-10 lg:pb-16 lg:pt-16"
+          : "pb-16 pt-16 lg:pb-24 lg:pt-[104px]"
+      }
+    >
       <Container>
         <div
           className={

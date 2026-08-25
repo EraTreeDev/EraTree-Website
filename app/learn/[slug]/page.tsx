@@ -52,13 +52,19 @@ export default async function ArticlePage({ params }: Params) {
               <p className="mt-4 text-[13px] text-muted">{article.readingTime}</p>
             </Reveal>
 
-            <Reveal delay={0.08} className="mt-10 overflow-hidden rounded-card">
+            <Reveal
+              delay={0.08}
+              className={`mt-10 flex items-center justify-center overflow-hidden rounded-card ${
+                article.logo ? "bg-surface-2 px-8 py-16" : ""
+              }`}
+            >
               <MediaSlot
                 src={article.image.src}
                 alt={article.image.alt}
                 width={article.image.width}
                 height={article.image.height}
                 aspect="aspect-[16/9]"
+                className={article.logo ? "max-w-[280px]" : ""}
                 priority
               />
             </Reveal>
