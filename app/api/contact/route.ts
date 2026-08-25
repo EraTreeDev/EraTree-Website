@@ -11,7 +11,7 @@ import { Resend } from "resend";
  */
 
 const TO = process.env.CONTACT_TO_EMAIL ?? "sales@eratree.io";
-const FROM = process.env.CONTACT_FROM_EMAIL ?? "EraTree Website <noreply@eratree.io>";
+const FROM = process.env.CONTACT_FROM_EMAIL ?? "EraTree Website <noreply@send.eratree.io>";
 
 export async function POST(request: Request) {
   let body: Record<string, unknown>;
