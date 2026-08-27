@@ -7,10 +7,29 @@ import { site } from "@/content/site";
  * sets one, so og:site_name, og:locale and og:type were being dropped site-wide.
  * Build the object through this helper so the shared fields always survive.
  */
+/**
+ * The app/opengraph-image.png file convention only reaches routes that do not
+ * declare their own openGraph object — which here is just the homepage. Setting
+ * it as a default keeps every page covered; pages passing their own `images`
+ * (the articles) still win, since the spread comes last.
+ */
+const OG_IMAGE = {
+  url: `${site.url}/opengraph-image.png`,
+  width: 1200,
+  height: 630,
+  alt: "EraTree — Build for trust. Grow with confidence.",
+};
+
 export function openGraph(
   o: NonNullable<Metadata["openGraph"]>,
 ): NonNullable<Metadata["openGraph"]> {
-  return { siteName: site.legalName, locale: "en_US", type: "website", ...o };
+  return {
+    siteName: site.legalName,
+    locale: "en_US",
+    type: "website",
+    images: [OG_IMAGE],
+    ...o,
+  };
 }
 
 /** Serialises JSON-LD for a <script type="application/ld+json"> tag. */
