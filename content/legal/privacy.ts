@@ -61,6 +61,13 @@ export const privacy: LegalDoc = {
       ]
     },
     {
+      "heading": "MOBILE INFORMATION",
+      "level": 2,
+      "blocks": [
+        "Mobile telephone numbers and text messaging consent collected by EraTree are used solely to deliver the one-time passcodes described in our [Terms of Use](/terms-of-use). We do not sell, rent, or share mobile telephone numbers or text messaging consent with third parties or affiliates for their own marketing or promotional purposes. Service providers that transmit these messages on our behalf are contractually restricted to that purpose and may not use the information for any other reason."
+      ]
+    },
+    {
       "heading": "HOW WE DISCLOSE YOUR PERSONAL INFORMATION",
       "level": 2,
       "blocks": [
@@ -141,7 +148,7 @@ export const privacy: LegalDoc = {
       "level": 2,
       "blocks": [
         "To exercise your rights, file a complaint, obtain information about our policies and practices or if you have questions or comments about this Privacy Policy, please contact our Privacy Officer by email at [info@eratree.io](mailto:info@eratree.io).",
-        "If you prefer not to receive marketing communications from us through any channel (including in-game notifications, email, postal mail, or phone), please follow the unsubscribe instructions within the relevant communication, adjust your preferences in the game settings, or contact us at [info@eratree.io](mailto:info@eratree.io).",
+        "If you prefer not to receive marketing communications from us through any channel (including email, postal mail, or telephone), please follow the unsubscribe instructions within the relevant communication, or contact us at [info@eratree.io](mailto:info@eratree.io).",
         "Please note that such requests may take up to 2 weeks to become effective. In addition, if you ask us to remove your name and address from our email lists, we will maintain your name in a \"do not mail\" file to ensure that we can honour your request."
       ]
     }

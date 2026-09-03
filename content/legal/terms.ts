@@ -61,6 +61,55 @@ export const terms: LegalDoc = {
       ]
     },
     {
+      "heading": "TEXT MESSAGING (ONE-TIME PASSCODES)",
+      "level": 2,
+      "blocks": [
+        "EraTree Technologies Inc. operates a text messaging service at +1 (866) 904-5701 used solely to deliver one-time passcodes when you sign in to your EraTree client portal. The passcode confirms that the person signing in controls the mobile number registered to the account. We do not send marketing, promotional, or advertising messages to this or any mobile number."
+      ]
+    },
+    {
+      "heading": "Consent",
+      "level": 3,
+      "blocks": [
+        "You receive a passcode only where you have provided your mobile number and affirmatively agreed to receive verification messages at the point of collection. Consent to receive text messages is not a condition of opening an account, or of purchasing any product or service from EraTree."
+      ]
+    },
+    {
+      "heading": "Message frequency",
+      "level": 3,
+      "blocks": [
+        "One message per sign-in attempt that you initiate. We do not send unsolicited messages."
+      ]
+    },
+    {
+      "heading": "Cost",
+      "level": 3,
+      "blocks": [
+        "Message and data rates may apply. EraTree does not charge for these messages; your mobile carrier's standard rates apply."
+      ]
+    },
+    {
+      "heading": "Opting out and help",
+      "level": 3,
+      "blocks": [
+        "Reply STOP to any message to stop receiving text messages, or HELP for assistance. You may also contact us at [info@eratree.io](mailto:info@eratree.io). Because these passcodes verify your identity, opting out will prevent you from signing in to the client portal by this method."
+      ]
+    },
+    {
+      "heading": "Delivery",
+      "level": 3,
+      "blocks": [
+        "Mobile carriers are not liable for delayed or undelivered messages, and delivery is not guaranteed."
+      ]
+    },
+    {
+      "heading": "Privacy",
+      "level": 3,
+      "blocks": [
+        "We do not sell, rent, or share mobile numbers or text messaging consent with third parties or affiliates for marketing or promotional purposes. Mobile information is handled as described in our [Privacy Policy](/privacy-policy)."
+      ]
+    },
+    {
       "heading": "CONDITIONS OF USE, USER SUBMISSIONS AND WEBSITE CONTENT STANDARDS",
       "level": 2,
       "blocks": [
