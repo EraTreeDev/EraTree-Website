@@ -3,6 +3,7 @@ import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import { Nav } from "@/components/layout/Nav";
+import { MigrationBanner } from "@/components/layout/MigrationBanner";
 import { Footer } from "@/components/layout/Footer";
 import { site } from "@/content/site";
 
@@ -23,6 +24,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <head>
+        {/*
+          Runs before paint so a dismissed banner is never briefly visible. The
+          banner itself ships visible, which is also what someone without
+          JavaScript should see.
+        */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{if(localStorage.getItem("eratree-domain-notice")==="dismissed")document.documentElement.setAttribute("data-domain-notice","off")}catch(e){}`,
+          }}
+        />
         {/* Without JS the scroll observers never fire, so reveal targets would
             stay at opacity 0. Show them immediately instead. */}
         <noscript
@@ -44,6 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to content
         </a>
+        <MigrationBanner />
         <Nav />
         <main id="main">{children}</main>
         <Footer />

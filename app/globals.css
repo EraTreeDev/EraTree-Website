@@ -73,3 +73,11 @@
     }
   }
 }
+
+/*
+ * The domain-change notice. The attribute is set by a pre-paint script in the
+ * document head, so a dismissed banner never renders a frame.
+ */
+[data-domain-notice="off"] [data-domain-banner] {
+  display: none;
+}

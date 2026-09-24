@@ -1,7 +1,7 @@
 export const site = {
   name: "Eratree",
   legalName: "EraTree",
-  url: "https://eratree.io",
+  url: "https://eratree.com",
   description:
     "Institutional-grade OTC desk for high-value crypto transactions with deep liquidity and private execution.",
   contactEmail: "sales@eratree.io",

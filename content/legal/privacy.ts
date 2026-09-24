@@ -13,7 +13,7 @@ export const privacy: LegalDoc = {
       "heading": null,
       "level": 2,
       "blocks": [
-        "EraTree Technologies Inc., a corporation existing under the laws of Canada, under corporation number 1287580-2, and EraTree Inc, a corporation organized under the laws of the United States, under filing ID 2025-001671701 (collectively referred to as \"EraTree\", \"we\", \"us\", or the \"Company\", as applicable), have developed this Privacy Policy to explain how we may collect, retain, process, share, and transfer your Personal Information when you visit us at www.eratree.io (the \"Website\").",
+        "EraTree Technologies Inc., a corporation existing under the laws of Canada, under corporation number 1287580-2, and EraTree Inc, a corporation organized under the laws of the United States, under filing ID 2025-001671701 (collectively referred to as \"EraTree\", \"we\", \"us\", or the \"Company\", as applicable), have developed this Privacy Policy to explain how we may collect, retain, process, share, and transfer your Personal Information when you visit us at www.eratree.com (the \"Website\").",
         "EraTree complies with the U.S. Privacy Act of 1974 and all applicable state-level privacy laws governing the collection, use, retention, and protection of Personal Information. We implement reasonable administrative, technical, and physical safeguards to protect Personal Information and process such data in accordance with applicable legal requirements.",
         "The specific EraTree entity responsible for your Personal Information depends on your location:",
         "If you reside in Canada, EraTree Technologies Inc. is the data controller.",

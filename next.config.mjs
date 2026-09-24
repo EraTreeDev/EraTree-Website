@@ -1,24 +1,47 @@
 /** @type {import('next').NextConfig} */
-const WWW = [{ type: "host", value: "www.eratree.io" }];
+
+const CANONICAL = "https://eratree.com";
 
 /**
- * Paths the previous site published and search engines still hold. They 404ed
- * after the rebuild, so each one is mapped to its replacement.
+ * Hostnames that should hand their traffic to the canonical origin.
+ *
+ * eratree.io is the previous domain and keeps answering indefinitely — its DNS
+ * still carries company email, which is untouched by anything here. HTTP
+ * redirects and mail routing are independent.
  */
+const FORWARDED_HOSTS = ["www.eratree.com", "eratree.io", "www.eratree.io"];
+
+/**
+ * Two rules per host, never one. "/:path*" also matches empty at the root, and
+ * Next leaves the literal ":path*" in an absolute destination — which once sent
+ * the bare domain to a 404. ":path+" requires at least one segment, so the root
+ * gets its own rule.
+ */
+const forward = (host) => [
+  {
+    source: "/",
+    has: [{ type: "host", value: host }],
+    destination: `${CANONICAL}/`,
+    permanent: true,
+  },
+  {
+    source: "/:path+",
+    has: [{ type: "host", value: host }],
+    destination: `${CANONICAL}/:path+`,
+    permanent: true,
+  },
+];
+
+/** Paths the previous site published, plus the spellings printed on the client
+ *  onboarding forms. Kept so old links and signed documents keep resolving. */
 const RENAMED = [
-  // Published by the previous site.
   ["/privacy", "/privacy-policy"],
   ["/terms", "/terms-of-use"],
   ["/disclosure", "/risk-disclosure"],
   ["/blog", "/learn"],
-
-  // Printed on the client onboarding forms. Unhyphenated, and never served by
-  // either site — clients were being asked to accept documents at dead links.
   ["/termsofuse", "/terms-of-use"],
   ["/privacypolicy", "/privacy-policy"],
   ["/riskdisclosure", "/risk-disclosure"],
-
-  // Near misses worth catching so a stale document never 404s again.
   ["/terms-and-conditions", "/terms-of-use"],
   ["/privacy-notice", "/privacy-policy"],
   ["/risk-disclosure-statement", "/risk-disclosure"],
@@ -28,16 +51,8 @@ const nextConfig = {
   reactStrictMode: true,
   async redirects() {
     return [
-      // Two rules, not one. With a single "/:path*" the optional segment also
-      // matches empty at the root, and Next leaves the literal ":path*" in an
-      // absolute destination — which sent www.eratree.io to a 404. ":path+"
-      // requires at least one segment, so the root needs its own rule.
-      { source: "/", has: WWW, destination: "https://eratree.io/", permanent: true },
-      { source: "/:path+", has: WWW, destination: "https://eratree.io/:path+", permanent: true },
-
+      ...FORWARDED_HOSTS.flatMap(forward),
       ...RENAMED.map(([source, destination]) => ({ source, destination, permanent: true })),
-
-      // Article slugs carried over unchanged, so one wildcard covers all 12.
       { source: "/blog/:slug", destination: "/learn/:slug", permanent: true },
     ];
   },

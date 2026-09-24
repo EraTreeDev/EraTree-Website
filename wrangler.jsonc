@@ -12,6 +12,17 @@
 		// the send.eratree.io subdomain so the root SPF/MX (Microsoft 365) stay untouched.
 		"CONTACT_FROM_EMAIL": "EraTree Website <noreply@send.eratree.io>"
 	},
+	// All four hostnames are listed so a deploy never detaches one that was
+	// attached from the dashboard. eratree.io stays attached because it must keep
+	// answering — it carries the redirect to eratree.com, and its DNS still
+	// carries company email, which nothing here touches.
+	"workers_dev": true,
+	"routes": [
+		{ "pattern": "eratree.io", "custom_domain": true },
+		{ "pattern": "www.eratree.io", "custom_domain": true },
+		{ "pattern": "eratree.com", "custom_domain": true },
+		{ "pattern": "www.eratree.com", "custom_domain": true }
+	],
 	"assets": {
 		"directory": ".open-next/assets",
 		"binding": "ASSETS"

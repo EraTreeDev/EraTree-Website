@@ -16,7 +16,7 @@ export const terms: LegalDoc = {
         "These terms and conditions of use, together with any documents and/or additional terms they expressly incorporate by reference, constitute a contract (the \"Terms of Use\") between you and the applicable EraTree entity as described below: EraTree Technologies Inc., a corporation existing under the laws of Canada, and EraTree Inc., a corporation organized under the laws of the United States (collectively, \"EraTree\"). References in these Terms of Use to \"EraTree,\" \"we,\" \"us,\" \"our,\" or the \"Company\" refer collectively to both entities.",
         "The specific entity contracting with you depends on your location: if you reside in Canada, you are contracting with EraTree Technologies Inc.; if you reside in the United States, you are contracting with EraTree Inc. Both entities jointly operate the platform and may share responsibilities for service delivery and data processing.",
         "PLEASE READ THIS DOCUMENT CAREFULLY. IT CONSTITUTES A LEGAL AGREEMENT BETWEEN YOU AND ERATREE.",
-        "By using the website at www.eratree.io (the \"Website\") or any of our services, you agree that you have read, understood, and accept all of the terms and conditions contained in these Terms of Use. If you do not agree to any part of these Terms of Use, you may not use the Website."
+        "By using the website at www.eratree.com (the \"Website\") or any of our services, you agree that you have read, understood, and accept all of the terms and conditions contained in these Terms of Use. If you do not agree to any part of these Terms of Use, you may not use the Website."
       ]
     },
     {
