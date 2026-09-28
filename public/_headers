@@ -1,0 +1,13 @@
+# Cloudflare Workers Assets honours this file.
+#
+# Everything static shipped with `max-age=0, must-revalidate`, so repeat
+# visitors revalidated every asset on every visit and got no browser cache.
+# These files only change when their name changes, so they can be held locally.
+/animations/*
+  Cache-Control: public, max-age=2592000
+/graphics/*
+  Cache-Control: public, max-age=2592000
+/images/*
+  Cache-Control: public, max-age=2592000
+/icons/*
+  Cache-Control: public, max-age=2592000

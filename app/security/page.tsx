@@ -38,6 +38,8 @@ export default function SecurityPage() {
         mediaSlot={
           <FeatheredVideo
             src="/animations/security-hero.mp4"
+            webm="/animations/security-hero.webm"
+            poster="/graphics/security-hero-poster.webp"
             alt={security.hero.media.alt}
             className="aspect-square w-full"
             feather={14}

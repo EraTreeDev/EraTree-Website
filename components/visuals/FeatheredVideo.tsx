@@ -9,6 +9,13 @@
  */
 export function FeatheredVideo({
   src,
+  /** Preferred source, tried before `src`. VP9 is markedly smaller than H.264 here. */
+  webm,
+  /**
+   * First frame. Without one the box stays empty until enough video arrives,
+   * which makes the video itself the LCP and gates first paint on megabytes.
+   */
+  poster,
   alt,
   className = "",
   /** How far each gradient reaches inward, as a % of the box. */
@@ -23,6 +30,8 @@ export function FeatheredVideo({
   scale = 1,
 }: {
   src: string;
+  webm?: string;
+  poster?: string;
   alt: string;
   className?: string;
   feather?: number;
@@ -40,10 +49,12 @@ export function FeatheredVideo({
         loop
         muted
         playsInline
-        preload="metadata"
+        poster={poster}
+        preload="none"
         aria-label={alt || undefined}
         role={alt ? "img" : "presentation"}
       >
+        {webm && <source src={webm} type="video/webm" />}
         <source src={src} type="video/mp4" />
       </video>
 
