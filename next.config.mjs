@@ -49,6 +49,25 @@ const RENAMED = [
 
 const nextConfig = {
   reactStrictMode: true,
+  /**
+   * The hero poster is the LCP on both of these pages, and nothing was
+   * preloading it — a <video poster> is not fetched early by the browser, and
+   * Next emits no hint for it.
+   *
+   * These are HTTP `Link` headers rather than HTML tags on purpose: Cloudflare
+   * Early Hints promotes `Link` headers into a 103, and ignores markup. So this
+   * preloads the poster on its own, and is also the thing Early Hints needs.
+   */
+  async headers() {
+    const preload = (href) => ({
+      key: "Link",
+      value: `<${href}>; rel=preload; as=image; fetchpriority=high`,
+    });
+    return [
+      { source: "/", headers: [preload("/graphics/hero-glass-poster-2560.webp")] },
+      { source: "/security", headers: [preload("/graphics/security-hero-poster.webp")] },
+    ];
+  },
   async redirects() {
     return [
       ...FORWARDED_HOSTS.flatMap(forward),
