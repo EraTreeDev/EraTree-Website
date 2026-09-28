@@ -134,7 +134,15 @@ export const home = {
   },
   hero: {
     heading: ["Build for trust. Grow", "with confidence."],
-    sub: "Institutional-grade OTC desk for high-value crypto transactions with deep liquidity and private execution.",
+    /**
+     * Split into lines like `heading` above. The break is applied from `lg`
+     * only — narrow screens wrap this naturally and a forced break there
+     * would strand a word.
+     */
+    sub: [
+      "Institutional-grade OTC desk for high-value crypto transactions",
+      "with deep liquidity and private execution.",
+    ],
     cta: { label: "Contact us", href: "/contact" },
     media: {
       src: "/animations/hero-landing.mp4",

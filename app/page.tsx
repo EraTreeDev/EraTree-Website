@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Fragment } from "react";
 import { openGraph, jsonLd, organizationSchema } from "@/lib/seo";
 import { Hero } from "@/components/sections/Hero";
 import { StatStrip } from "@/components/sections/StatStrip";
@@ -9,7 +10,6 @@ import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
 import { MediaSlot } from "@/components/visuals/MediaSlot";
-import { FeatheredVideo } from "@/components/visuals/FeatheredVideo";
 import { home } from "@/content/pages";
 
 export const metadata: Metadata = {
@@ -32,27 +32,23 @@ export default function HomePage() {
             {line}
           </span>
         ))}
-        sub={home.hero.sub}
+        sub={home.hero.sub.map((line, i) => (
+          <Fragment key={line}>
+            {i > 0 && (
+              <>
+                <br className="hidden lg:inline" />{" "}
+              </>
+            )}
+            {line}
+          </Fragment>
+        ))}
         cta={home.hero.cta}
-        mediaSlot={
-          <FeatheredVideo
-            src="/animations/hero-landing.mp4"
-            alt={home.hero.media.alt}
-            // The globe fills only ~33% of the 16:9 source and sits right of
-            // centre, so crop to a square around it rather than showing the
-            // empty frame.
-            // Capped so the square crop doesn't push the landing hero taller
-            // than the region heroes.
-            className="mx-auto aspect-square w-full max-w-[450px]"
-            // The globe sits at ~72% across the source; right-aligning the
-            // cover crop is what actually centres it in a square box.
-            objectPosition="100% 50%"
-            scale={1.05}
-            feather={9}
-          />
-        }
-        layout="balanced"
-        padding="tight"
+        backdrop={{
+          webm: "/animations/hero-glass-2560.webm",
+          mp4: "/animations/hero-glass-2560.mp4",
+          webmSmall: "/animations/hero-glass-1280.webm",
+          poster: "/graphics/hero-glass-poster-2560.webp",
+        }}
       />
 
       <StatStrip stats={home.stats} />
