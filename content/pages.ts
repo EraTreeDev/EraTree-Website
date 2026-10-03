@@ -50,7 +50,7 @@ export const currencies = [
 
 export const globalReach = {
   eyebrow: "Global reach",
-  heading: ["Trade digital assets from", "30+ fiat currencies."],
+  heading: ["Trade digital assets across", "38 currencies, 40 countries."],
 };
 
 /** The four trading cards, shared by /canada and /us. */
@@ -72,7 +72,7 @@ const tradingCards: Feature[] = [
   },
   {
     title: "Competitive Pricing",
-    body: "EraTree offers transparent and competitive pricing across fiat currencies like USD and CAD, as well as digital assets including BTC and USDC. Our deep liquidity access and streamlined infrastructure allow us to minimize spreads and reduce transaction costs across 30+ fiat currencies.",
+    body: "EraTree offers transparent and competitive pricing across fiat currencies like USD and CAD, as well as digital assets including BTC and USDC. Our deep liquidity access and streamlined infrastructure allow us to minimize spreads and reduce transaction costs across 38 currencies in 40 countries.",
     icon: { src: "/icons/card-competitive-pricing.png", alt: "" },
   },
 ];
@@ -155,7 +155,7 @@ export const home = {
     {
       index: "01",
       title: "Global Reach",
-      body: "Trade digital assets and access 30+ global currencies.",
+      body: "Trade digital assets and settle in 38 currencies across 40 countries.",
     },
     {
       index: "02",
@@ -197,7 +197,7 @@ export const home = {
   },
   carousel: {
     heading: "Build with Trust. Grow with Confidence.",
-    body: "Secure, discreet OTC trading for HNWIs and institutions. Trade between BTC, ETH, Stablecoins, and 30+ fiat currencies with tight spreads, fast settlement, and personalized support.",
+    body: "Secure, discreet OTC trading for HNWIs and institutions. Trade between BTC, ETH, Stablecoins, and 38 currencies across 40 countries with tight spreads, fast settlement, and personalized support.",
     slides: [
       {
         title: "Trust & Security",
@@ -221,7 +221,7 @@ export const home = {
       },
       {
         title: "Cross Border",
-        body: "Serving high-net-worth individuals and institutions across Canada and the United States. Access Bitcoin, Ethereum, and Stablecoins with settlement in 30+ currencies.",
+        body: "Serving high-net-worth individuals and institutions across Canada and the United States. Access Bitcoin, Ethereum, and Stablecoins with settlement in 38 currencies across 40 countries.",
         image: {
           src: "/images/carousel-cross-border.png",
           alt: "",
@@ -245,7 +245,7 @@ export const home = {
     heading: ["Liquidity you need,", "the service you want."],
     body: "Transparent pricing, experienced trade team, and processes designed for clients moving meaningful size.",
     columns: [
-      { title: "Fiat", body: "CAD, USD, EUR, and 30+ other currencies" },
+      { title: "Fiat", body: "CAD, USD, EUR and 35 more — 38 currencies in total" },
       { title: "Direct", body: "Access to experienced market specialists" },
       { title: "Crypto", body: "Bitcoin, Ethereum, USDC…" },
     ],

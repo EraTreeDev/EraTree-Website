@@ -27,7 +27,7 @@ function Pill({ code, country }: { code: string; country: string }) {
 }
 
 /**
- * "Trade digital assets from 30+ fiat currencies" plus the flag pill row.
+ * "Trade digital assets across 38 currencies, 40 countries" plus the flag pill row.
  *
  * The row bleeds the full viewport width and scrolls left forever. The pill set
  * is rendered twice: the track travels -50%, at which point copy 2 sits exactly
